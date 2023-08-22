@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./project:/usr/src/project
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    tty: true
+    command: /bin/sh
+  db:
+    image: postgres:13
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=nest
